@@ -1,0 +1,36 @@
+<h1 (click)="home()">MovieRating</h1>
+<button (click)="delete()" id="delete"><span class="material-icons black-color">delete </span>Delete</button>
+<div class="arrow">
+  <h3 id="cancel" (click)="Back()">&#8592;</h3>
+</div>
+<div class="readmore">
+<div class="left">
+    <h2 id="title">{{this.film.moviename | capfirstletter}}</h2>
+    <h3 id="category">{{this.film.category}}</h3>
+    <br>
+    <br>
+    <p id="description"  *ngIf="!bewerken">{{this.film.beschrijving | capfirstletter}} <button (click)="bewerken= true">edit</button></p>
+    <textarea rows="10" *ngIf="bewerken" [(ngModel)]="this.film.beschrijving"></textarea>
+    <button *ngIf="bewerken" (click)="bewerken= false">Save</button>
+    <br>
+    <label for="modelRating">Nieuwe Beoordeling:</label>
+    <igc-rating id="nieuwerating" name="modelRating" (igcChange)="ratingChanged($event);" max="5"></igc-rating>
+</div>
+<div class="right">
+    <img *ngIf="this.film.image" [src]="this.film.image" alt="preview" width="200">
+    <h2 id="rating">{{this.film.stars}} <span>&#9733;</span></h2>
+    <form id="comments" [formGroup]="commentForm" (ngSubmit)="addComment()">
+        <div>
+          <label id="comment" for="comment">opmerking</label>
+          <input type="text" formControlName="comment">
+        </div>
+        <ul>
+            <li *ngFor="let comment of this.film.opmerkingen; let i = index">
+              {{ comment |capfirstletter}}
+              <button (click)="this.film.opmerkingen.splice(i,1)"><span class="material-icons black-color">delete </span></button>
+            </li>
+          </ul>
+        <button type="submit" color="primary" mat-raised-button>Toevoegen</button>
+      </form>
+</div>
+</div>

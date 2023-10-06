@@ -1,0 +1,14 @@
+<h1 (click)="Back()">MovieRating</h1>
+<input  type="text" (keyup.enter)="onEnter()" [(ngModel)]="searchfield" placeholder="Search Movie / Enter">
+<button (click)="goTo()">+ Add Movie</button>
+<div class="center">
+<select [(ngModel)]="filterOption">
+    <option selected value="*">All Movies</option>
+    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+</select>
+</div>
+<h1 id="nomovies" *ngIf="display">No Matching movies found</h1>
+<div class="movies">
+    <app-movie *ngFor="let Film of movies" [Film]="Film"></app-movie>
+</div>
+

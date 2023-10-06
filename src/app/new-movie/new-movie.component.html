@@ -1,0 +1,33 @@
+<h1 (click)="Back()">MovieRating</h1>
+<form id="full">
+<div class="left">
+    <input type="text" id="title" [(ngModel)]="title" name="title" placeholder="Voer filmtitel in"required>
+    <select  id="category" [(ngModel)]="filterOption">
+        <option *ngFor="let category of categories">{{ category }}</option>
+      </select>
+    <textarea id="description" [(ngModel)]="description" name="description" rows="10" placeholder="geef een beschrijving"></textarea>
+    <label for="modelRating">Beoordeling:</label>
+    <igc-rating id="nieuwerating" name="modelRating" (igcChange)="ratingChanged($event);" max="5"></igc-rating>
+</div>
+<div class="right">
+    <label for="image">Afbeelding uploaden:</label>
+    <input type="file" id="image" name="image" (change)="imageinput($event)">
+    <form id="comments" [formGroup]="commentForm" (ngSubmit)="addComment()">
+        <div>
+          <label for="commenti">opmerking: </label>
+          <input type="text" id="commenti" formControlName="comment">
+        </div>
+        <ul>
+            <li *ngFor="let comment of comments; let i = index">
+              {{ comment |capfirstletter }}
+              <button (click)="comments.splice(i, 1)"><span class="material-icons black-color">delete </span></button>
+            </li>
+          </ul>
+        <button type="submit" color="primary" mat-raised-button>Toevoegen</button>
+      </form>
+<br>
+    <button type="reset" id="cancel" (click)="Back()">Annuleren</button>
+    <button type="submit" id="submit" (click)="addMovie()">Opslaan</button>
+</div>
+</form>
+  

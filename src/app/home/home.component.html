@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="center">
+        <h1>MovieRating</h1>
+    </div>
+    <div class="left">
+    <select [(ngModel)]="filterOption">
+        <option selected value="*">All Movies</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+      <a routerLink="newMovie">Add Movie</a>  
+    </div>
+    <input  type="text" (keyup.enter)="onEnter()" [(ngModel)]="searchfield" placeholder="Search Movie / Enter">
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,61 @@
+h1 {
+    font-size: 80px;
+    padding: 20px;
+    border: 1px solid black;
+    color: yellow;
+    background: linear-gradient(to right, rgb(176, 0, 0), rgb(0, 180, 0));
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 60px;
+}
+input {
+    background-color: white; 
+    border: 1px solid black; 
+    color: black;
+    padding: 10px; 
+    width: 500px; 
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+    font-size: xxx-large;
+    
+
+}
+div.center {
+    text-align: center;
+
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+select {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-right: 200px;
+
+}
+option {
+    background-color: black;
+    color: white;
+}
+a {
+    color: white;
+    text-emphasis: none;
+    margin-top: 20px;
+    text-decoration: none;
+
+}
+a:hover {
+    color: rgb(176, 0, 0);;
+}
+div#left {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
