@@ -55,25 +55,21 @@ form#full {
     margin-left: 50px;
 }
 button#submit {
-    background-color: rgb(0, 180, 0);
-    color: white;
     border: none;
     padding: 15px;
-    border-radius: 100px;
     font-size: 20px;
     margin-right: 10px;
 
 }
+
 button#cancel {
-    background-color: rgb(176, 0, 0);
-    color: white;
     border: none;
     padding: 15px;
-    border-radius: 100px;
     font-size: 20px;
     margin-right: 18px;
     margin-left: 18px;
 }
+
 label#comment {
     font-size: large;
     margin-right: 5px;

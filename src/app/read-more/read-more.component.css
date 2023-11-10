@@ -134,3 +134,9 @@ form#comments ul {
     font-size: 26px;
     cursor: pointer;
 }
+.full {
+    background: radial-gradient(at right top, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
+}
+h3 {
+    font-size: medium;
+}

@@ -3,7 +3,11 @@ div.movie{
     margin-top: 50px;
     cursor: pointer;
     margin-bottom: 10px;
-    
+    border: 4px double #55d3d5;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    background-color: #34495e;
 }
 h1 {
 

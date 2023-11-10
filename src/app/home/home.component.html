@@ -1,3 +1,5 @@
+<div *ngIf="!bool" class="right"><button (click)="redirectToLogin()" class="login">Login</button></div>
+<div *ngIf="bool" class="right"><button (click)="redirectToLogout()" class="login">Log out</button></div>
 <div class="container">
     <div class="center">
         <h1>MovieRating</h1>
@@ -9,6 +11,9 @@
       </select>
       <a routerLink="newMovie">Add Movie</a>  
     </div>
-    <input  type="text" (keyup.enter)="onEnter()" [(ngModel)]="searchfield" placeholder="Search Movie / Enter">
+    <input  type="text" (keyup.enter)="onEnter()" [(ngModel)]="searchfield" placeholder="Search Movie">
+    <br>
+    <button mat-raised-button color="primary" (click)="toadminpage()" *ngIf="admin">Admin Page</button>
 </div>
+
 <router-outlet></router-outlet>

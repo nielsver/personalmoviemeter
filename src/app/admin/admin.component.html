@@ -1,0 +1,37 @@
+<button mat-raised-button color="primary" class="back" (click)="toHome()">Back</button>
+
+<table border="1">
+  <caption>Current User</caption>
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>User Name</th>
+      <th>User Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="getCurrentUser()">
+      <td>{{ getCurrentUser()?.id }}</td>
+      <td>{{ getCurrentUser()?.name }}</td>
+      <td>{{ getCurrentUser()?.rights }}</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table border="1">
+  <caption>All Administrators</caption>
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>User Name</th>
+      <th>User Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of Users; let i = index;">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.rights }}</td>
+    </tr>
+  </tbody>
+</table>

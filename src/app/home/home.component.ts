@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -24,13 +25,31 @@ export class HomeComponent {
   searchfield: string = '';
   filterOption: string = '*';
   categories: string[] = ['Action', 'Comedy', 'Drama', 'Thriller','Adventure'];
-  constructor(private router: Router) {}
-  ngOnInit(){
+  bool: boolean = true;
+  admin: boolean = false;
+  constructor(private router: Router, private authService: AuthService) {}
 
+  async ngOnInit(){
+    this.bool = this.authService.isLoggedIn();
+    try {
+      this.admin = await this.authService.isAdmin();
+    } catch (error) {
+      console.error('Error checking admin status:', error);
+    }
   }
   onEnter(){
     const inputValue = this.searchfield;
     console.log(inputValue);
     this.router.navigate(['/result'],{ queryParams: { title: this.searchfield,filter: this.filterOption } });
+  }
+  redirectToLogin() {
+    this.router.navigate(['/login']); 
+  }
+  redirectToLogout() {
+    this.authService.logout();
+    this.bool = false;
+  }
+  toadminpage() {
+    this.router.navigate(['/admin']);
   }
 }

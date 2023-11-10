@@ -14,7 +14,7 @@ describe('ReadMoreComponent', () => {
 
     fixture = TestBed.createComponent(ReadMoreComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+
   });
 
   it('should create', () => {

@@ -1,0 +1,2 @@
+admin user: admin@local.test
+paswoord: admin1234

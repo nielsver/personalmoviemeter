@@ -1,5 +1,5 @@
 h1 {
-    font-size: 80px;
+    font-size: 70px;
     padding: 20px;
     border: 1px solid black;
     color: yellow;
@@ -30,7 +30,7 @@ div.center {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 70vh;
 }
 select {
     background-color: black;
@@ -58,4 +58,35 @@ div#left {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.login{
+    margin-right: 200px;
+    margin-top: 50px;
+    font-size: larger;
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background-size: 120% auto;
+    background-image: linear-gradient(315deg, #833ab4 0%, #fd1d1d 50%, #fcb045);;
+  }
+  .login:hover {
+    background-position: right center;
+  }
+  .login:active {
+    top: 2px;
+  }
+
+.right {
+    width: 100%; 
+    text-align: right; 
 }

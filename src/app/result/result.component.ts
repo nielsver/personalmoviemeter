@@ -1,13 +1,29 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { Film } from '../film';
+import { Film } from '../Film';
 import { FilmsService } from '../films.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
-  styleUrls: ['./result.component.css']
+  styleUrls: ['./result.component.css'],
+  styles: [
+    `
+    :host {
+      display:block;
+      background: radial-gradient(at right top, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 9999;
+      overflow: auto;
+    }
+  `,
+  ],
 })
 export class ResultComponent {
   title: string = '';
@@ -17,6 +33,7 @@ export class ResultComponent {
   categories: string[] = ['Action', 'Comedy', 'Drama', 'Thriller','Adventure'];
   movies: Film[] = [];
   display: boolean = false;
+  Filmsubscription!: Subscription;
 
   constructor(private route: ActivatedRoute,private router: Router, private filmservice: FilmsService){}
   ngOnInit() {
@@ -25,13 +42,11 @@ export class ResultComponent {
       this.filter = params['filter'];
       this.searchfield = this.title;
       this.filterOption = this.filter;
-      console.log(this.title,this.filter);
       this.onGetfilms();
   })
 }
   onEnter(){
     const inputValue = this.searchfield;
-    console.log(inputValue);
     this.router.navigate(['/result'],{ queryParams: { title: this.searchfield,filter: this.filterOption } });
     this.ngOnInit;
   }
@@ -42,29 +57,22 @@ export class ResultComponent {
     this.router.navigate(['/']);
   }
   onGetfilms() {
-    this.filmservice.getFilms().subscribe({
+    this.Filmsubscription = this.filmservice.getFilms().subscribe({
       next: (response: Film[]) => {
-        console.log('received films', response);
         this.movies = response;
-        console.log('received films', response);
         if (this.searchfield == '' && this.filterOption == '*') {
-          console.log("geen filters");
           this.movies = response;
         } else if (this.searchfield != '' && this.filterOption == '*') {
-          console.log("alleen naam");
           this.movies = response.filter(movie => movie.moviename.toLowerCase().includes(this.searchfield.toLowerCase()));
         } else if (this.searchfield == '' && this.filterOption != '*') {
-          console.log("alleen de categoire");
           this.movies = response.filter(movie => movie.category.toLowerCase().includes(this.filterOption.toLowerCase()));
         } else {
-          console.log("beiden filters");
           this.movies = response.filter(movie => {
             const naam = movie.moviename.toLowerCase().includes(this.searchfield.toLowerCase());
             const optie = movie.category.toLowerCase().includes(this.filterOption.toLowerCase());
             return naam && optie;
           });
         }
-        console.log("Films", this.movies.length);
         if(this.movies.length == 0) {
           this.display = true;
         }
@@ -73,6 +81,15 @@ export class ResultComponent {
         }
       }
     });
+  }
+  onFilterChange() {
+    this.onEnter();
+  }
+  ngOnDestroy() {
+    if(this.Filmsubscription){
+      this.Filmsubscription.unsubscribe();
+    }
+    
   }
   
 }

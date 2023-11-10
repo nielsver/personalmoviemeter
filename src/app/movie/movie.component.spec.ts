@@ -14,7 +14,6 @@ describe('MovieComponent', () => {
 
     fixture = TestBed.createComponent(MovieComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
